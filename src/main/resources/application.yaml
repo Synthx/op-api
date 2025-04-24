@@ -1,0 +1,26 @@
+spring:
+  config:
+    import: sm://
+  jackson:
+    default-property-inclusion: NON_EMPTY
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          jwk-set-uri: https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com
+          issuer-uri: https://securetoken.google.com/${app.project-id}
+
+logging:
+  level:
+    root: INFO
+
+server:
+  servlet:
+    encoding:
+      force-response: true
+      charset: UTF-8
+  http2:
+    enabled: true
+  compression:
+    enabled: true
+    min-response-size: 1024
