@@ -7,6 +7,6 @@ RUN ./gradlew build
 FROM eclipse-temurin:21-jre-alpine
 
 WORKDIR /app
-COPY --from=builder /appli/target/*.jar app.jar
+COPY --from=builder /appli/build/libs/*.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
