@@ -3,6 +3,7 @@ package com.yezebi.pinpin.op.controller;
 import com.yezebi.pinpin.op.dto.request.SearchCardRequest;
 import com.yezebi.pinpin.op.dto.response.CardResponse;
 import com.yezebi.pinpin.op.dto.response.MinimalCardResponse;
+import com.yezebi.pinpin.op.model.CardColor;
 import com.yezebi.pinpin.op.service.CardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/cards")
 @RequiredArgsConstructor
@@ -22,6 +25,11 @@ public class CardController {
     @GetMapping
     public Page<MinimalCardResponse> findAll(final Pageable pageable, final SearchCardRequest request) {
         return cardService.findAll(pageable, request);
+    }
+
+    @GetMapping("colors")
+    public Map<CardColor, Long> getColorsMapping(final SearchCardRequest request) {
+        return cardService.getColorsMapping(request);
     }
 
     @Nullable
